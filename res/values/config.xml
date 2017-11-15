@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-        <!-- Screw'd AOSP API Key -->
-	<string name="owm_api_key" translatable="false" >a3be0bb8630f866dfbd9ecc2aca9e093</string>
+        <!-- AquariOS OpenWeather API Key -->
+	<string name="owm_api_key" translatable="false" >8b3768aae33cc0cd847cc8f11a88ec4d</string>
 
 </resources>

@@ -38,7 +38,7 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
     private static final int FORECAST_DAYS = 5;
     private static final String SELECTION_LOCATION = "lat=%f&lon=%f";
     private static final String SELECTION_ID = "id=%s";
-    private static final String API_KEY = "a3be0bb8630f866dfbd9ecc2aca9e093";
+    private static final String API_KEY = "8b3768aae33cc0cd847cc8f11a88ec4d";
 
     private static final String URL_LOCATION =
             "http://api.openweathermap.org/data/2.5/find?q=%s&mode=json&lang=%s&appid=%s";
