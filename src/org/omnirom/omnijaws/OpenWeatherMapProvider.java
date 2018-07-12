@@ -96,6 +96,9 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
     }
 
     private WeatherInfo handleWeatherRequest(String selection, boolean metric) {
+        if (getAPIKey() == null) {
+            return null;
+        }
         String units = metric ? "metric" : "imperial";
         String locale = getLanguageCode();
         String conditionUrl = String.format(Locale.US, URL_WEATHER, selection, units, locale, getAPIKey());
@@ -179,6 +182,20 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
                         metric);
             }
             result.add(item);
+        }
+        // clients assume there are 5  entries - so fill with dummy if needed
+        if (result.size() < 5) {
+            for (int i = result.size(); i < 5; i++) {
+                Log.w(TAG, "Missing forecast for day " + i + " creating dummy");
+                DayForecast item = new DayForecast(
+                        /* low */ 0,
+                        /* high */ 0,
+                        /* condition */ "",
+                        /* conditionCode */ -1,
+                        "NaN",
+                        metric);
+                result.add(item);
+            }
         }
         return result;
     }
@@ -328,7 +345,7 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
     }
 
     private String getAPIKey() {
-        return mContext.getResources().getString(R.string.owm_api_key, API_KEY);
+        return mContext.getResources().getString(R.string.owm_api_key, null);
     }
 
     public boolean shouldRetry() {
